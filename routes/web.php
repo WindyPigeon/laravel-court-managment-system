@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 //use App\Models\User;
-//use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +24,17 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/login', function () {
-    return view('home');
+    return redirect('/home');
 })->name('login');
 
-Route::post('/register', function (Illuminate\Http\Request $request) {
+Route::get('/home', function () {
+    return view('/home');
+})->middleware('auth.basic');
+
+Route::post('register', [App\Http\Controllers\Auth\RegisterController::class,'store']
+)->name('register');
+
+/* Route::post('/register', function (Illuminate\Http\Request $request) {
     $user = App\Models\User::create([
         'name' => $request->name,
         'email' => $request->email,
@@ -37,4 +43,4 @@ Route::post('/register', function (Illuminate\Http\Request $request) {
     ]);
     $user->save();
     return view('auth.login');
-})->name('register');
+})->name('register'); */
