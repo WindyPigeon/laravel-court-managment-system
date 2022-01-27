@@ -23,15 +23,17 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::post('/login', function () {
-    return redirect('/home');
-})->name('login');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'authenticate']
+)->name('login');
+
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class,'logout']
+)->name('logout');
 
 Route::get('/home', function () {
-    return view('/home');
-})->middleware('auth.basic');
+    return view('home');
+});
 
-Route::post('register', [App\Http\Controllers\Auth\RegisterController::class,'store']
+Route::post('register', [App\Http\Controllers\Auth\RegisterController::class,'register']
 )->name('register');
 
 /* Route::post('/register', function (Illuminate\Http\Request $request) {

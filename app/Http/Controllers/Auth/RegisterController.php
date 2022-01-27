@@ -71,7 +71,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function register(Request $request)
     {
         $data = [
             'name' => $request->name,
@@ -86,5 +86,6 @@ class RegisterController extends Controller
             $user = $this->create($data);
             $user->save();
         }
+        return redirect('/login');
     }
 }
