@@ -13,7 +13,7 @@ class CreateFacilityTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('facilitytypes', function (Blueprint $table) {
+        Schema::create('facility_types', function (Blueprint $table) {
             $table->id();
             $table->string('sport');
             $table->timestamps();

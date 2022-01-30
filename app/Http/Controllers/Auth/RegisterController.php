@@ -71,6 +71,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function index()
+    {
+        return view('auth.register');
+    }
+
     public function register(Request $request)
     {
         $data = [
@@ -80,10 +85,10 @@ class RegisterController extends Controller
             'password' => $request->password,
         ];
 
-        $validated = $this->validator($data);
+        $validated = RegisterController::validator($data);
 
         if ($validated) {
-            $user = $this->create($data);
+            $user = RegisterController::create($data);
             $user->save();
         }
         return redirect('/login');

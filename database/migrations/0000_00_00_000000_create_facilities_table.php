@@ -15,8 +15,9 @@ class CreateFacilitiesTable extends Migration
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('sport');
-            $table->string('is_indoor');
+            $table->unsignedBigInteger('facility_type_id');
+            $table->string('location');
+            $table->boolean('is_indoor');
             $table->decimal('cost_per_hour');
             $table->bigInteger('number_of_courts');
             $table->timestamps();

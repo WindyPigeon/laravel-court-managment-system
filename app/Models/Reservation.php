@@ -12,16 +12,15 @@ class Reservation extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'facility_id'
+        'facility_id',
     ];
 
     protected $casts = [
         'reserved_courts' => 'integer',
         'start_time' => 'datetime',
         'end_time' => 'datetime',
-        'is_cancelled' => 'boolean'
+        'is_cancelled' => 'boolean',
     ];
-
     
     /**
 	 * Get the user that owns the reservation.

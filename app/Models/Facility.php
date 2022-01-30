@@ -15,7 +15,7 @@ class Facility extends Model
      * @var array
      */
     protected $fillable = [
-        'id'
+        'id',
         'facility_type_id',
         'location',
     ];
@@ -36,12 +36,24 @@ class Facility extends Model
     }
 
     /**
-	 * Get the facilit ytype that owns the facility.
+	 * Get the facility type that owns the facility.
 	 *
-	 * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+	 * @return \Models\FacilityType
 	 */
-    public function facilitytype()
+    public function facilityType()
     {
-        return belongsTo(User::class);
+        return FacilityType::find($this->facility_type_id);
+    }
+
+    /**
+     * Scope a query to only include facility of a given type.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  mixed  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('facilitytype', $type);
     }
 }

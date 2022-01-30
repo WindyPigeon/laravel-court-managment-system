@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-//use App\Models\User;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,34 +17,46 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('/login', [LoginController::class,'index'])->name('login');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+Route::post('/login', [LoginController::class,'authenticate'])->name('login');
 
-Route::post('/login', [App\Http\Controllers\Auth\LoginController::class,'authenticate']
-)->name('login');
+Route::get('/profile', [LoginController::class,'show'])->middleware('auth')->name('profile');
 
-Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class,'logout']
-)->name('logout');
+Route::post('/logout', [LoginController::class,'logout'])->name('logout');
 
-Route::get('/home', function () {
+Route::get('/register', [RegisterController::class,'index'])->name('register');
+
+Route::post('/register', [RegisterController::class,'register'])->name('register');
+
+Route::post('/home', function () {
     return view('home');
 });
 
-Route::post('register', [App\Http\Controllers\Auth\RegisterController::class,'register']
-)->name('register');
+Route::get('/facilities', [FacilityController::class,'index'])->name('facilities.index');
 
-/* Route::post('/register', function (Illuminate\Http\Request $request) {
-    $user = App\Models\User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'password' => $request->password
-    ]);
-    $user->save();
-    return view('auth.login');
-})->name('register'); */
+Route::get('/facilities/create', [FacilityController::class,'create'])->name('facilities.create');
+
+Route::post('/facilities', [FacilityController::class,'store'])->name('facilities.store');
+
+Route::get('/facilities/{facility}', [FacilityController::class,'show'])->name('facilities.show');
+
+Route::get('/facilities/{facility}/edit', [FacilityController::class,'edit'])->name('facilities.edit');
+
+Route::put('/facilities/{facility}', [FacilityController::class,'update'])->name('facilities.update');
+
+Route::delete('/facilities/{facility}', [FacilityController::class,'destroy'])->name('facilities.destroy');
+
+Route::get('/reservations', [ReservationController::class,'index'])->name('reservation.index');
+
+Route::get('/reservations/create', [ReservationController::class,'create'])->name('reservation.create');
+
+Route::post('/reservations', [ReservationController::class,'store'])->name('reservation.store');
+
+Route::get('/reservations/{reservation}', [ReservationController::class,'show'])->name('reservation.show');
+
+Route::get('/reservations/{reservation}/edit', [ReservationController::class,'edit'])->name('reservation.edit');
+
+Route::put('/reservations/{reservation}', [ReservationController::class,'update'])->name('reservation.update');
+
+Route::delete('/reservations/{reservation}', [ReservationController::class,'destroy'])->name('reservation.destroy');
