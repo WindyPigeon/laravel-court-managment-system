@@ -8,27 +8,24 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {  
     /**
-     * Instantiate a new controller instance.
-     *
-     * @return void
+     * The user repository instance.
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('log')->only('index');
-        $this->middleware('subscribed')->except('store');
-    }
+    protected $users;
 
     /**
-     * Responds to requests to GET /users
+     * Display a listing of the user.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $users = $User::all();
+
+        return view('users.index')->with('users', $users);
     }
 
     /**
-     * Store a new user.
+     * Store a newly created user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -46,7 +43,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => $request->password
+            'password' => $request->password,
         ]);
 
         $user->save();
@@ -55,15 +52,15 @@ class UserController extends Controller
     }
 
     /**
-     * Show the profile for a given user.
+     * Display the specified user.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show($id = null)
     {
         return view('user.profile', [
-            'user' => User::findOrFail($id)
+            'user' => $id == null ? $id = Auth::user() : User::findOrFail($id),
         ]);
     }
 
@@ -77,5 +74,5 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
+    } 
 }

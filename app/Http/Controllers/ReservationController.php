@@ -11,7 +11,7 @@ class ReservationController extends Controller
     /**
      * The reservation repository instance.
      */
-    protected $reservation;
+    protected $reservations;
 
     /**
      * Get a validator for an incoming reservation request.
@@ -35,9 +35,13 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($facilityid = null, $userid = null)
     {
-        $reservations = Reservation::all();
+        if ($facilityid == null && $userid == null) {
+            $reservations = Reservation::all();
+        } else {
+            $reservations = User::findOrFail($userid)->reservations()->OfFacility($facilityid)->get;
+        }
 
         return view('reservations.index')->with('reservations', $reservations);
     }

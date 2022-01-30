@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,15 @@ Route::get('/register', [RegisterController::class,'index'])->name('register');
 
 Route::post('/register', [RegisterController::class,'register'])->name('register');
 
-Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+Route::post('/password/reset')->name('auth.password.reset');
 
 Route::get('/', function () {return view('home');})->name('home');
+
+Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+Route::get('/profile', [UserController::class,'show'])->name('profile');
+
+Route::get('/profile/edit', function () {return view('profile')->with('user', Auth::user());})->name('profile.edit');
 
 Route::get('/facilities', [FacilityController::class,'index'])->name('facilities.index');
 

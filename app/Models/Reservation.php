@@ -41,4 +41,8 @@ class Reservation extends Model
     {
         return belongsTo(Facility::class);
     }
+
+    public function scopeOfFacility($query, $facility_id) {
+        return $query->where('facility_id', $facility_id);
+    }
 }

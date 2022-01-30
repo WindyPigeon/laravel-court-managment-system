@@ -20,27 +20,33 @@
                       <th scope="col">
                         Number of Courts
                       </th>
+                      <th scope="col">
+                        Reservation Time
+                      </th>
                     </tr>
                     <tbody>
                     <form method="GET">
-                      @foreach ($facilities as $facility)
+                      @foreach ($reservations as $reservation)
                         <tr>
                           <td>
-                            {{ $facility->location }}
+                            {{ $reservation->facility()->location }}
                           </td>
                           <td>
-                            {{ $facility->facilityType()->sport }}
+                            {{ $reservation->facility()->facilityType()->sport }}
                           </td>
                           <td>
-                            {{ $facility->is_indoor }}
+                            {{ $reservation->facility()->is_indoor }}
                           </td>
                           <td>
-                            {{ $facility->number_of_courts }}
+                            {{ $reservation->facility()->number_of_courts }}
+                          </td>
+                          <td>
+                            {{ $reservation->start_time }} - {{ $reservations->end_time }}
                           </td>
                           <td>
                             <div class="hstack gap-3">
                               @if (Auth::user()->isAdmin())
-                                <button type="submit" class="btn btn-primary" formaction="facilities/{{ $facility->id }}/edit">
+                                <button type="submit" class="btn btn-primary" formaction="reservations/{{ $reservation->id }}/edit">
                                     {{ __('Edit') }}
                                 </button>
                               @endif
