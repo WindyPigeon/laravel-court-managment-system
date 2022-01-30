@@ -47,16 +47,16 @@ Route::put('/facilities/{facility}', [FacilityController::class,'update'])->name
 
 Route::delete('/facilities/{facility}', [FacilityController::class,'destroy'])->name('facilities.destroy');
 
-Route::get('/reservations', [ReservationController::class,'index'])->name('reservation.index');
+Route::get('/reservations', [ReservationController::class,'index'])->name('reservations.index');
 
-Route::get('/reservations/create', [ReservationController::class,'create'])->name('reservation.create');
+Route::get('/reservations/{facility}/create', [ReservationController::class,'create'])->name('reservations.create');
 
-Route::post('/reservations', [ReservationController::class,'store'])->name('reservation.store');
+Route::post('/reservations', [ReservationController::class,'store'])->name('reservations.store');
 
-Route::get('/reservations/{reservation}', [ReservationController::class,'show'])->name('reservation.show');
+Route::get('/reservations/{reservation}', [ReservationController::class,'show'])->name('reservations.show');
 
-Route::get('/reservations/{reservation}/edit', [ReservationController::class,'edit'])->name('reservation.edit');
+Route::get('/reservations/{reservation}/edit', [ReservationController::class,'edit'])->name('reservations.edit');
 
-Route::put('/reservations/{reservation}', [ReservationController::class,'update'])->name('reservation.update');
+Route::put('/reservations/{reservation}', [ReservationController::class,'update'])->name('reservations.update');
 
-Route::delete('/reservations/{reservation}', [ReservationController::class,'destroy'])->name('reservation.destroy');
+Route::delete('/reservations/{reservation}', [ReservationController::class,'destroy'])->name('reservations.destroy');

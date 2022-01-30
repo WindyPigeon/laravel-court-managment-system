@@ -73,7 +73,7 @@ class FacilityController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('facilities.edit')->with('facility', Facility::find($id));
     }
 
     /**
@@ -89,7 +89,7 @@ class FacilityController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified facility from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

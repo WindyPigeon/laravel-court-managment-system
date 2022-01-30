@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facility;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+    /**
+     * The reservation repository instance.
+     */
+    protected $reservation;
+
     /**
      * Get a validator for an incoming reservation request.
      *
@@ -24,37 +31,31 @@ class ReservationController extends Controller
     }
 
     /**
-     * Create a new reservation instance after a valid registration.
+     * Display a listing of the reservation.
      *
-     * @param  array  $data
-     * @return \App\Models\Reservation
+     * @return \Illuminate\Http\Response
      */
-    protected function create(array $data)
+    public function index()
     {
-        return Reservation::create([
-            'user_id' => $data['user_id'],
-            'facility_id' => $data['facility_id'],
-            'reserved_courts' => $data['reserved_courts'],
-            'start_time' => $data['start_time'],
-            'end_time' => $data['end_time'],
+        $reservations = Reservation::all();
+
+        return view('reservations.index')->with('reservations', $reservations);
+    }
+
+    /**
+     * Show the form for creating a new reservation.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    protected function create($facility_id)
+    {
+        return view('reservations.create', [
+            'facility' => Facility::findOrFail($facility_id)
         ]);
     }
 
     /**
-     * Show the details for a given reservation.
-     *
-     * @param  int  $id
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        return view('reservation.details', [
-            'reservation' => Reservation::findOrFail($id)
-        ]);
-    }
-
-    /**
-     * Store a new reservation in the database.
+     * Store a newly created reservation in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -75,5 +76,52 @@ class ReservationController extends Controller
             $reservation = ReservationController::create($data);
             $reservation->save();
         }
+    }
+
+    /**
+     * Display the specified reservation.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('reservations.details', [
+            'reservation' => Reservation::findOrFail($id)
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified reservation.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('reservations.edit')->with('reservation', Reservation::find($id));
+    }
+
+    /**
+     * Update the specified reservation in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified reservation from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Reservation::destroy($id);
     }
 }
