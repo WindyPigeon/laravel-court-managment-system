@@ -76,20 +76,20 @@
 
         <main class="py-4">
             @auth
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+                <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="{{ route('profile') }}" class="nav-link text-white">
+                            <a href="{{ route('profile') }}" class="nav-link">
                                 Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('facilities') }}" class="nav-link text-white">
+                            <a href="{{ route('facilities.index') }}" class="nav-link">
                                 Facilities
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white">
+                            <a href="#" class="nav-link">
                                 Your Reservation
                             </a>
                         </li>

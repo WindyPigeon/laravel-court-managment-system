@@ -29,6 +29,8 @@ Route::get('/register', [RegisterController::class,'index'])->name('register');
 
 Route::post('/register', [RegisterController::class,'register'])->name('register');
 
+Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
 Route::get('/', function () {return view('home');})->name('home');
 
 Route::get('/facilities', [FacilityController::class,'index'])->name('facilities.index');

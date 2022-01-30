@@ -11,14 +11,25 @@ $theme-colors: (
 @import "~bootstrap/scss/bootstrap";
 
 // etc
-.card-header, .navbar {
+.card-header, .nav, .navbar {
     color: white;
     background-color: $primary;
 }
 
 
-.card-header *, .navbar * {
+.card-header *, .nav *, .navbar *, .dropdown-toggle {
     color: white;
+}
+
+.dropdown-menu {
+    color: white;
+    background-color: darkgrey;
+}
+
+
+.dropdown-item:hover {
+    color: white;
+    background-color: grey;
 }
 
 a:hover, .nav-link:hover{
