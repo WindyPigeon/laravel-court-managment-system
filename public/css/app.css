@@ -10676,9 +10676,14 @@ textarea.form-control-lg {
   }
 }
 .card-header, .navbar {
+  color: white;
   background-color: black;
 }
 
 .card-header *, .navbar * {
   color: white;
+}
+
+a:hover, .nav-link:hover {
+  color: lime;
 }

@@ -12,10 +12,15 @@ $theme-colors: (
 
 // etc
 .card-header, .navbar {
+    color: white;
     background-color: $primary;
 }
 
 
 .card-header *, .navbar * {
     color: white;
+}
+
+a:hover, .nav-link:hover{
+    color: lime;
 }
