@@ -16,7 +16,7 @@ class FacilityType extends Model
      */
     protected $fillable = [
         'id',
-        'sport'
+        'sport',
     ];
 
     
