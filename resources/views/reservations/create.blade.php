@@ -8,26 +8,29 @@
             <div class="card-header">{{ __('New Reservation') }}</div>
 
             <div class="card-body">
-              <form method="POST" action="{{ route('reservations.store') }}">
+              <form method="POST">
                 @csrf
 
                 <h2 class="display-6">User Information</h2>
                 <div class="row mb-3">
-                  <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+                  <label for="user-name" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
                   <div class="col-md-6">
-                    <input id="name" class="form-control" name="name" value="{{ Auth::user()->name }}" readonly>
+                    <input id="user-name" class="form-control" name="user-name" value="{{ Auth::user()->name }}" readonly>
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('ID') }}</label>
+                  <label for="user-id" class="col-md-4 col-form-label text-md-end">{{ __('ID') }}</label>
                   <div class="col-md-6">
-                    <input id="name" class="form-control" name="name" value="{{ Auth::id() }}" readonly>
+                    <input id="user-id" type="number" class="form-control" name="user-id" value="{{ Auth::id() }}" readonly>
                   </div>
                 </div>
 
                 <hr>
                 
                 <h2 class="display-6">Reservation Details</h2>
+                
+                <input id="facility-id" type="hidden" name="facility-id" value="{{ $facility->id }}" readonly>
+
                 <div class="row mb-3">
                   <label for="facility-type" class="col-md-4 col-form-label text-md-end">{{ __('Facility Type') }}</label>
                   <div class="col-md-6">
@@ -67,6 +70,12 @@
                   </div>
                 </div>
                 <div class="row mb-3">
+                  <label for="reserved-courts" class="col-md-4 col-form-label text-md-end">{{ __('Reserved courts') }}</label>
+                  <div class="col-md-6">
+                    <input id="reserved-courts" type="number" class="form-control" name="reserved-courts" step="1" min="0">
+                  </div>
+                </div>
+                <div class="row mb-3">
                   <label for="start-time" class="col-md-4 col-form-label text-md-end">{{ __('Start at') }}</label>
                   <div class="col-md-6">
                     <input id="start-time" type="datetime-local" class="form-control" name="start-time">
@@ -82,7 +91,7 @@
                 <div class="row mb-0">
                   <div class="col-md-6 offset-md-4">
                     <div class="hstack gap-3">
-                      <button type="submit" class="btn btn-primary">
+                      <button type="submit" class="btn btn-primary"  formaction="{{ route('reservations.store') }}">
                           {{ __('Reserve') }}
                       </button>
                       <button type="submit" class="btn btn-outline-primary">
@@ -96,5 +105,5 @@
           </div>
       </div>
   </div>
-</div>]
+</div>
 @endsection

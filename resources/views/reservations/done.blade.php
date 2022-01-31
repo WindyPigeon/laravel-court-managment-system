@@ -5,6 +5,7 @@
   <div class="row justify-content-center">
       <div class="col-md-8">
           <div class="card">
+              <h2 class="display-6">RESERVED!</h2>
               <div class="card-header">{{ __('Details') }}</div>
 
               <div class="card-body">
@@ -12,27 +13,23 @@
                   <tbody>
                     <tr>
                       <th scope="row">Facilities</th>
-                      <td>{{ $facility->facilitytype()->sport }}</td>
+                      <td>{{ $reservation['facilitytype'] }}</td>
                     </tr>
                     <tr>
                       <th scope="row">Location</th>
-                      <td>{{ $facility->location }}</td>
+                      <td>{{ $reservation['facilitylocation'] }}</td>
                     </tr>
                     <tr>
                       <th scope="row"></th>
-                      <td>{{ $facility->is_indoor}}</td>
+                      <td>indoor</td>
                     </tr>
                     <tr>
-                      <th scope="row">Operating Hours</th>
-                      <td>{{ $facility->start_operating_time }} – {{ $facility->end_operating_time }}</td>
+                      <th scope="row">Reservation Time</th>
+                      <td>{{ $reservation['start_time'] }} – {{ $reservation['end_time'] }}</td>
                     </tr>
                     <tr>
-                      <th scope="row">Number of Courts</th>
-                      <td>{{ $facility->number_of_courts }}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Available Courts</th>
-                      <td>16</td>
+                      <th scope="row">Reserved Courts</th>
+                      <td>{{ $reservation['reserved_courts'] }}</td>
                     </tr>
                   </tbody>
                 </table>

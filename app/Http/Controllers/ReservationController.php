@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Facility;
 use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,13 +23,7 @@ class ReservationController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'user_id' => ['required', 'exists:App\Models\User,id'],
-            'facility_id' => ['required', 'exists:App\Models\Facility,id'],
-            'reserved_courts' => ['required', 'integer', 'min:1'],
-            'start_time' => ['required'],
-            'end_time' => ['required', 'after:start_time'],
-        ]);
+        
     }
 
     /**
@@ -67,20 +62,36 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'user_id' => $request->user_id,
-            'facility_id' => $request->facility_id,
-            'reserved_courts' => $request->reserved_courts,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-        ];
+        //$validated = $request->validate([
+         //   'user_id' => ['required', 'exists:App\Models\User,id'],
+         //   'facility_id' => ['required', 'exists:App\Models\Facility,id'],
+         //   'reserved_courts' => ['required', 'integer', 'min:1'],
+         //   'start_time' => ['required'],
+        //    'end_time' => ['required', 'after:start_time'],
+        //]);
 
-        $validated = ReservationController::validator($data);
-
-        if ($validated) {
-            $reservation = ReservationController::create($data);
+        //if ($validated) {
+           /*  $reservation = ReservationController::create([
+                'user_id' => $request->user_id,
+                'facility_id' => $request->facility_id,
+                'reserved_courts' => $request->reserved_courts,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+            ]); */
+            $user = User::find($request['user-id']);
+            $facility = Facility::find($request['facility-id']);
+            $reservation = [
+                'username' => $user->name,
+                'facilitytype' => $facility->facilityType()->sport,
+                'facilitylocation' => $facility->location,
+                'reserved_courts' => $request['reserved-courts'],
+                'start_time' => $request['start-time'],
+                'end_time' => $request['end-time'],
+            ];
+            return view('reservations.done')->with('reservation', $reservation);
             $reservation->save();
-        }
+            return redirect()->route('reservations.show', ['reservation' => $reservation->id]);    
+        //}
     }
 
     /**

@@ -63,7 +63,7 @@ Route::get('/reservations', [ReservationController::class,'index'])->name('reser
 
 Route::get('/reservations/{facility}/create', [ReservationController::class,'create'])->name('reservations.create');
 
-Route::post('/reservations', [ReservationController::class,'store'])->name('reservations.store');
+Route::post('/reservations/ad', [ReservationController::class,'store'])->name('reservations.store');
 
 Route::get('/reservations/{reservation}', [ReservationController::class,'show'])->name('reservations.show');
 

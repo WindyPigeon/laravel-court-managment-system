@@ -17,7 +17,7 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('facility_id');
-            $table->bigInteger('reserved_courts');
+            $table->bigInteger('reserved_courts')->default(1);
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->timestamps();

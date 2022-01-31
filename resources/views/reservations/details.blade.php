@@ -12,15 +12,15 @@
                   <tbody>
                     <tr>
                       <th scope="row">Facilities</th>
-                      <td>{{ $reservation->facilities->facilitytype }}</td>
+                      <td>{{ Facility::find($reservation->facility_id) }}</td>
                     </tr>
                     <tr>
                       <th scope="row">Location</th>
-                      <td>{{ $reservation->facilities->location }}</td>
+                      <td>{{ Facility::find($reservation->facility_id)->location }}</td>
                     </tr>
                     <tr>
                       <th scope="row"></th>
-                      <td>{{ $reservation->facilities->is_indoor}}</td>
+                      <td>{{ Facility::find($reservation->facility_id)->is_indoor}}</td>
                     </tr>
                     <tr>
                       <th scope="row">Reservation Time</th>
@@ -36,4 +36,5 @@
           </div>
       </div>
   </div>
-</div>]
+</div>
+@endsection
