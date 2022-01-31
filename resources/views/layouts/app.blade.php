@@ -76,35 +76,41 @@
                 </div>
             </nav>
         </header>
-        @auth
-            <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="width: 280px;">
-                <div class="container-fluid d-flex flex-column p-0">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{ route('profile') }}" class="nav-link">
-                                Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('facilities.index') }}" class="nav-link">
-                                Facilities
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('reservations.index') }}" class="nav-link">
-                                Your Reservation
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        @endauth
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-        
-        <footer class="footer py-5 mt-5 bg-primary">
+        <div class="row">
+            @auth
+                <div class="col-3 d-flex">
+                    <div class="nav flex-column nav-pills bg-secondary" role="tablist" aria-orientation="vertical">
+                        <ul class="list-unstyled">
+                            <li class="nav-item">
+                                <a href="{{ route('profile') }}" class="nav-link text-white">
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('facilities.index') }}" class="nav-link text-white">
+                                    Facilities
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('reservations.index') }}" class="nav-link text-white">
+                                    Your Reservation
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            @endauth
+            
+            <div class="col">
+                <div class="tab-content">
+                    <main class="py-4">
+                        @yield('content')
+                    </main>
+                </div>
+            </div>
+        </div>
+        <footer class="footer bg-primary">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
