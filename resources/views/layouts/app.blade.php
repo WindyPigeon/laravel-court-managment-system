@@ -20,10 +20,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md shadow-sm">
-            <div class="container">
+        <header class="navbar navbar-expand-md navbar-dark bg-primary">
+            <nav class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('img/logomark.svg') }}" alt="{{ config('app.name', 'Laravel') }}" width="50" height="52">
+                    <img src="{{ asset('img/logotype.svg') }}" alt="{{ config('app.name', 'Laravel') }}" width="114" height="29">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -32,7 +33,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="navbar-item">
+                            <a class="nav-link text-white" href="{{ route('welcome') }}">Home</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -58,8 +61,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -71,13 +74,12 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @auth
-                <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
-                    <ul class="nav nav-pills flex-column mb-auto">
+            </nav>
+        </header>
+        @auth
+            <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="width: 280px;">
+                <div class="container-fluid d-flex flex-column p-0">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="{{ route('profile') }}" class="nav-link">
                                 Profile
@@ -95,10 +97,35 @@
                         </li>
                     </ul>
                 </div>
-            @endauth
+            </nav>
+        @endauth
 
+        <main class="py-4">
             @yield('content')
         </main>
+        
+        <footer class="footer py-5 mt-5 bg-primary">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <img src="{{ asset('img/logomark.svg') }}" alt="{{ config('app.name', 'Laravel') }}" width="50" height="52">
+                            <img src="{{ asset('img/logotype.svg') }}" alt="{{ config('app.name', 'Laravel') }}" width="114" height="29">
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-unstyled">
+                            <li class="">
+                                <a href="{{ route('welcome') }}" class="text-white text-decoration-none">Home</a>
+                            </li>
+                            <li class="">
+                                <a href="{{ route('about-us') }}" class="text-white text-decoration-none">About Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

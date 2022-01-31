@@ -32,7 +32,8 @@ Route::post('/register', [RegisterController::class,'register'])->name('register
 
 Route::post('/password/reset')->name('auth.password.reset');
 
-Route::get('/', function () {return view('home');})->name('home');
+Route::get('/', function () {return view('welcome');})->name('welcome');
+Route::get('/about-us', function () {return view('about-us');})->name('about-us');
 
 Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
