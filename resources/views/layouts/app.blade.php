@@ -83,6 +83,11 @@
                     <div class="nav flex-column nav-pills bg-secondary" role="tablist" aria-orientation="vertical">
                         <ul class="list-unstyled">
                             <li class="nav-item">
+                                <a href="{{ route('dashboard') }}" class="nav-link text-white">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('profile') }}" class="nav-link text-white">
                                     Profile
                                 </a>
