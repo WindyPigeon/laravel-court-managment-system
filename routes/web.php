@@ -43,6 +43,10 @@ Route::get('/profile/edit', function () {return view('profile')->with('user', Au
 
 Route::get('/facilities', [FacilityController::class,'index'])->name('facilities.index');
 
+Route::get('/facilities/{facility}/reserve', [ReservationController::class,'create'])->name('facilities.reserve');
+
+Route::get('/facilities/create', [FacilityController::class,'create'])->name('facilities.create');
+
 Route::get('/facilities/create', [FacilityController::class,'create'])->name('facilities.create');
 
 Route::post('/facilities', [FacilityController::class,'store'])->name('facilities.store');

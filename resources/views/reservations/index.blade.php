@@ -50,7 +50,7 @@
                                     {{ __('Edit') }}
                                 </button>
                               @endif
-                              <button type="button" class="btn btn-outline-primary" formaction="reservation/create') }}">
+                              <button type="submit" class="btn btn-outline-primary" formaction="reservation/create">
                                   {{ __('Reserve') }}
                               </button>
                             </div>

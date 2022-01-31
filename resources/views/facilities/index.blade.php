@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-xl-8">
           <div class="card">
               <div class="card-body">
                 <table class="table">
@@ -20,6 +20,7 @@
                       <th scope="col">
                         Number of Courts
                       </th>
+                      <th scope="col"></th>
                     </tr>
                     <tbody>
                     <form method="GET">
@@ -44,7 +45,7 @@
                                     {{ __('Edit') }}
                                 </button>
                               @endif
-                              <button type="button" class="btn btn-outline-primary" formaction="reservation/create') }}">
+                              <button type="submit" class="btn btn-outline-primary" formaction="facilities/{{ $facility->id }}/reserve">
                                   {{ __('Reserve') }}
                               </button>
                             </div>

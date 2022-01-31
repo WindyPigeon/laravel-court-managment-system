@@ -11,10 +11,33 @@
               <form method="POST" action="{{ route('reservations.store') }}">
                 @csrf
 
+                <h2 class="display-6">User Information</h2>
+                <div class="row mb-3">
+                  <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+                  <div class="col-md-6">
+                    <input id="name" class="form-control" name="name" value="{{ Auth::user()->name }}" readonly>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('ID') }}</label>
+                  <div class="col-md-6">
+                    <input id="name" class="form-control" name="name" value="{{ Auth::id() }}" readonly>
+                  </div>
+                </div>
+
+                <hr>
+                
+                <h2 class="display-6">Reservation Details</h2>
+                <div class="row mb-3">
+                  <label for="facility-type" class="col-md-4 col-form-label text-md-end">{{ __('Facility Type') }}</label>
+                  <div class="col-md-6">
+                    <input id="facility-type" class="form-control" name="facility-type" value="{{ $facility->facilityType()->sport }}" readonly>
+                  </div>
+                </div>
                 <div class="row mb-3">
                   <label for="location" class="col-md-4 col-form-label text-md-end">{{ __('Location') }}</label>
                   <div class="col-md-6">
-                    <textarea id="location" class="form-control" name="location" value="{{ $facility->location }}" readonly></textarea>
+                    <textarea id="location" class="form-control" name="location" readonly>{{ $facility->location }}</textarea>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -33,7 +56,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text">RM</span>
                       </div>
-                      <input id="cost-per-hour" type="number" class="form-control" name="cost-per-hour" step="0.01" min="0.00" value="{{ $facility->cost_per_hours }}" readonly>
+                      <input id="cost-per-hour" type="number" class="form-control" name="cost-per-hour" step="0.01" min="0.00" value="{{ $facility->cost_per_hour }}" readonly>
                     </div>
                   </div>
                 </div>
@@ -62,7 +85,7 @@
                       <button type="submit" class="btn btn-primary">
                           {{ __('Reserve') }}
                       </button>
-                      <button type="button" class="btn btn-outline-primary">
+                      <button type="submit" class="btn btn-outline-primary">
                           {{ __('Cancel') }}
                       </button>
                     </div>
